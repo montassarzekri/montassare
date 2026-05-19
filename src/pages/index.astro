@@ -1,0 +1,563 @@
+---
+import "../styles/global.css";
+import Navbar from "../components/Navbar.svelte";
+import CommandBar from "../components/CommandBar.svelte";
+
+// ── EDIT YOUR INFO HERE ───────────────────────────────────────────────────────
+const name = "Montassare";
+const role = "Senior Mobile Engineer";
+const location = "Tunisia · UTC+1";
+const email = "montassare@proton.me";
+const github = "github.com/montassare";
+const linkedin = "linkedin.com/in/montassare";
+
+const experience = [
+    {
+        company: "Orange Maxit",
+        role: "Senior Flutter Developer",
+        period: "2024 — Present",
+        points: [
+            "Shipped a telco super-app feature set under accelerated sprints — demo-ready on day one.",
+            "Built a custom animated announcement overlay with elastic entrance, backdrop blur, and haptic feedback — zero animation library deps.",
+            "Established Flutter conventions that cut new-feature setup time by ~40%.",
+        ],
+    },
+    {
+        company: "Previous Role",
+        role: "Flutter Developer",
+        period: "2022 — 2024",
+        points: [
+            "Delivered cross-platform mobile products across fintech and logistics verticals.",
+            "Integrated platform-native APIs (CMPedometer, Health Connect) through custom Kotlin/Swift plugin layer.",
+            "Led migration from REST to Supabase realtime, reducing backend latency by ~60ms p99.",
+        ],
+    },
+];
+
+const projects = [
+    {
+        name: "Komn",
+        tag: "Side project",
+        desc: "Step-tracking social competition app. Tribes (max 8), 1v1 matches, daily resets, roast cards. Steps are a score — not a wellness metric.",
+        stack: ["Flutter", "Supabase", "Health Connect", "HealthKit", "Kotlin"],
+    },
+    {
+        name: "Moyenne",
+        tag: "Side project",
+        desc: "Grade tracking with a gamepad-style hold-to-accelerate stepper, custom arc-geometry slider via CustomPainter, and M3 design tokens throughout.",
+        stack: ["Flutter", "Dart", "CustomPainter", "Material 3"],
+    },
+];
+
+const stack = [
+    "Flutter",
+    "Dart",
+    "Kotlin",
+    "Swift",
+    "Supabase",
+    "Firebase",
+    "Riverpod",
+    "BLoC",
+    "REST",
+    "GraphQL",
+    "Git",
+];
+const langs = [
+    ["Arabic", "Native"],
+    ["French", "Fluent"],
+    ["English", "Professional"],
+];
+const links = [
+    [github, "GitHub"],
+    [linkedin, "LinkedIn"],
+];
+// ─────────────────────────────────────────────────────────────────────────────
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+        />
+        <title>{name} — {role}</title>
+        <meta name="description" content={`${name} · ${role}`} />
+        <meta name="theme-color" content="#0a0a0b" />
+        <style>
+            /* Prevent theme flash — runs before paint */
+            html {
+                visibility: hidden;
+            }
+        </style>
+        <script is:inline>
+            (function () {
+                const saved = localStorage.getItem("theme");
+                const prefersDark = window.matchMedia(
+                    "(prefers-color-scheme: dark)",
+                ).matches;
+                if (saved === "light" || (!saved && !prefersDark)) {
+                    document.documentElement.setAttribute(
+                        "data-theme",
+                        "light",
+                    );
+                    document
+                        .querySelector('meta[name="theme-color"]')
+                        ?.setAttribute("content", "#fafaf9");
+                }
+                // Reveal after theme applied
+                document.documentElement.style.visibility = "visible";
+            })();
+        </script>
+    </head>
+    <body
+        class="relative min-h-screen font-sans"
+        style="background:var(--bg-primary); color:var(--text-body);"
+    >
+        <Navbar client:only />
+
+        <main
+            class="relative z-10 mx-auto max-w-3xl px-5 py-24 sm:px-6 md:py-32"
+        >
+            <!-- HEADER -->
+            <header
+                data-reveal
+                style="animation-delay:0ms"
+                class="mb-14 flex flex-col gap-5 md:flex-row md:items-start md:justify-between"
+            >
+                <div>
+                    <h1
+                        class="mb-1.5 text-3xl font-semibold tracking-tight sm:text-4xl"
+                        style="color:var(--text-primary);"
+                    >
+                        {name}
+                    </h1>
+                    <p
+                        class="text-base font-light sm:text-lg"
+                        style="color:var(--text-secondary);"
+                    >
+                        {role}
+                    </p>
+                </div>
+                <div class="flex flex-col items-start gap-2.5 md:items-end">
+                    <span
+                        class="inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 font-mono text-2xs font-medium"
+                        style="border-color:var(--accent-soft); background:var(--accent-bg); color:var(--accent);"
+                    >
+                        <span
+                            class="inline-block h-1.5 w-1.5 animate-pulse rounded-full"
+                            style="background:var(--accent);"></span>
+                        Open to remote work
+                    </span>
+                    <span
+                        class="font-mono text-xs sm:text-sm"
+                        style="color:var(--text-muted);">{location}</span
+                    >
+                    <a
+                        href={`mailto:${email}`}
+                        class="font-mono text-xs transition-colors duration-200 hover:underline sm:text-sm"
+                        style="color:var(--text-muted);">{email}</a
+                    >
+                </div>
+            </header>
+
+            <div
+                class="mb-14 h-px w-full"
+                style="background:var(--border-subtle);"
+            >
+            </div>
+
+            <div
+                class="grid grid-cols-1 gap-14 md:grid-cols-[1fr_200px] md:gap-16"
+            >
+                <!-- LEFT -->
+                <div class="flex flex-col gap-14 md:gap-16">
+                    <section data-reveal style="animation-delay:80ms">
+                        <p
+                            class="max-w-lg text-sm font-light leading-relaxed sm:text-base"
+                            style="color:var(--text-secondary);"
+                        >
+                            I build mobile products that ship fast and feel
+                            considered. Five years writing Flutter across
+                            fintech, telco, and consumer apps — architecture to
+                            pixel. Currently targeting high-leverage remote
+                            contracts with European-market clients.
+                        </p>
+                    </section>
+
+                    <section data-reveal style="animation-delay:140ms">
+                        <p
+                            class="font-mono text-2xs uppercase tracking-widest"
+                            style="color:var(--text-muted);"
+                        >
+                            Experience
+                        </p>
+                        <div class="mt-5 flex flex-col gap-8 sm:gap-10">
+                            {
+                                experience.map((job) => (
+                                    <div
+                                        class="relative pl-4 sm:pl-5"
+                                        style="border-left:1px solid var(--border-subtle);"
+                                    >
+                                        <div class="mb-2.5 flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:justify-between">
+                                            <div>
+                                                <span
+                                                    class="text-sm font-medium sm:text-base"
+                                                    style="color:var(--text-primary);"
+                                                >
+                                                    {job.company}
+                                                </span>
+                                                <span
+                                                    class="mx-1.5 sm:mx-2"
+                                                    style="color:var(--text-muted);"
+                                                >
+                                                    ·
+                                                </span>
+                                                <span
+                                                    class="text-sm font-light"
+                                                    style="color:var(--text-secondary);"
+                                                >
+                                                    {job.role}
+                                                </span>
+                                            </div>
+                                            <span
+                                                class="font-mono text-2xs"
+                                                style="color:var(--text-muted);"
+                                            >
+                                                {job.period}
+                                            </span>
+                                        </div>
+                                        <ul class="flex flex-col gap-2">
+                                            {job.points.map((point) => (
+                                                <li
+                                                    class="flex gap-2 text-xs font-light leading-relaxed sm:text-sm"
+                                                    style="color:var(--text-muted);"
+                                                >
+                                                    <span
+                                                        class="mt-[0.4em] inline-block h-1 w-1 flex-shrink-0 rounded-full sm:mt-[0.45em]"
+                                                        style="background:var(--accent); opacity:0.55;"
+                                                    />
+                                                    {point}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                ))
+                            }
+                        </div>
+                    </section>
+
+                    <section data-reveal style="animation-delay:200ms">
+                        <p
+                            class="font-mono text-2xs uppercase tracking-widest"
+                            style="color:var(--text-muted);"
+                        >
+                            Projects
+                        </p>
+                        <div class="mt-5 flex flex-col gap-4 sm:gap-5">
+                            {
+                                projects.map((proj) => (
+                                    <div
+                                        class="rounded-xl p-4 sm:p-5 transition-colors duration-300"
+                                        style="border:1px solid var(--border-subtle); background:var(--bg-secondary);"
+                                    >
+                                        <div class="mb-2 flex items-center gap-3 flex-wrap">
+                                            <span
+                                                class="text-sm font-medium sm:text-base"
+                                                style="color:var(--text-primary);"
+                                            >
+                                                {proj.name}
+                                            </span>
+                                            <span
+                                                class="rounded-full px-2 py-0.5 font-mono text-2xs"
+                                                style="border:1px solid var(--border-subtle); color:var(--text-muted);"
+                                            >
+                                                {proj.tag}
+                                            </span>
+                                        </div>
+                                        <p
+                                            class="mb-3 text-xs font-light leading-relaxed sm:text-sm"
+                                            style="color:var(--text-muted);"
+                                        >
+                                            {proj.desc}
+                                        </p>
+                                        <div class="flex flex-wrap gap-1.5">
+                                            {proj.stack.map((s) => (
+                                                <span
+                                                    class="rounded-md px-2 py-0.5 font-mono text-2xs transition-colors duration-300"
+                                                    style="border:1px solid var(--border-subtle); color:var(--text-secondary); background:var(--bg-primary);"
+                                                >
+                                                    {s}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    </div>
+                                ))
+                            }
+                        </div>
+                    </section>
+                </div>
+
+                <!-- RIGHT -->
+                <div
+                    class="flex flex-col gap-10"
+                    data-reveal
+                    style="animation-delay:180ms;"
+                >
+                    <section>
+                        <p
+                            class="font-mono text-2xs uppercase tracking-widest"
+                            style="color:var(--text-muted);"
+                        >
+                            Stack
+                        </p>
+                        <div class="mt-4 flex flex-wrap gap-1.5">
+                            {
+                                stack.map((s) => (
+                                    <span
+                                        class="cursor-default rounded-lg px-2.5 py-1 font-mono text-2xs transition-colors duration-300"
+                                        style="border:1px solid var(--border-subtle); background:var(--bg-secondary); color:var(--text-secondary);"
+                                    >
+                                        {s}
+                                    </span>
+                                ))
+                            }
+                        </div>
+                    </section>
+
+                    <section>
+                        <p
+                            class="font-mono text-2xs uppercase tracking-widest"
+                            style="color:var(--text-muted);"
+                        >
+                            Education
+                        </p>
+                        <div class="mt-4">
+                            <p
+                                class="text-xs font-medium sm:text-sm"
+                                style="color:var(--text-primary);"
+                            >
+                                Engineering Degree
+                            </p>
+                            <p
+                                class="text-xs sm:text-sm"
+                                style="color:var(--text-secondary);"
+                            >
+                                Computer Science
+                            </p>
+                            <p
+                                class="mt-1.5 font-mono text-2xs"
+                                style="color:var(--text-muted);"
+                            >
+                                Tunisia · 2019
+                            </p>
+                        </div>
+                    </section>
+
+                    <section>
+                        <p
+                            class="font-mono text-2xs uppercase tracking-widest"
+                            style="color:var(--text-muted);"
+                        >
+                            Languages
+                        </p>
+                        <div class="mt-4 flex flex-col gap-2.5">
+                            {
+                                langs.map(([lang, level]) => (
+                                    <div class="flex items-center justify-between">
+                                        <span
+                                            class="text-xs sm:text-sm"
+                                            style="color:var(--text-secondary);"
+                                        >
+                                            {lang}
+                                        </span>
+                                        <span
+                                            class="font-mono text-2xs"
+                                            style="color:var(--text-muted);"
+                                        >
+                                            {level}
+                                        </span>
+                                    </div>
+                                ))
+                            }
+                        </div>
+                    </section>
+
+                    <section>
+                        <p
+                            class="font-mono text-2xs uppercase tracking-widest"
+                            style="color:var(--text-muted);"
+                        >
+                            Links
+                        </p>
+                        <div class="mt-4 flex flex-col gap-2.5">
+                            {
+                                links.map(([url, label]) => (
+                                    <a
+                                        href={`https://${url}`}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="group flex items-center justify-between text-xs transition-colors duration-200 hover:underline sm:text-sm"
+                                        style="color:var(--text-muted);"
+                                    >
+                                        <span class="group-hover:text-[var(--text-secondary)] transition-colors duration-200">
+                                            {label}
+                                        </span>
+                                        <svg
+                                            style="width:0.75rem;height:0.75rem;opacity:0.45;"
+                                            class="group-hover:opacity-70 transition-opacity duration-200"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                                            />
+                                        </svg>
+                                    </a>
+                                ))
+                            }
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </main>
+
+        <!-- ── SPECIAL FOOTER ─────────────────────────────────────────────────────── -->
+        <footer
+            class="no-print relative z-10 mt-8 sm:mt-12"
+            style="background:var(--footer-bg); border-top:1px solid var(--border-subtle);"
+        >
+            <!-- Decorative gradient line -->
+            <div
+                class="h-[2px] w-full"
+                style="background:linear-gradient(90deg, transparent 0%, var(--accent) 20%, var(--accent) 80%, transparent 100%); opacity:0.5;"
+            >
+            </div>
+
+            <div class="mx-auto max-w-3xl px-5 py-10 sm:px-6 sm:py-14">
+                <div
+                    class="flex flex-col items-center gap-6 text-center sm:flex-row sm:justify-between sm:text-left"
+                >
+                    <!-- Left -->
+                    <div class="flex flex-col gap-2">
+                        <span
+                            class="text-sm font-semibold tracking-tight"
+                            style="color:var(--text-primary);">{name}</span
+                        >
+                        <span
+                            class="text-xs font-light"
+                            style="color:var(--text-muted);"
+                            >{role} — {location}</span
+                        >
+                        <div
+                            class="mt-1 flex items-center justify-center gap-3 sm:justify-start"
+                        >
+                            <a
+                                href={`https://${github}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="font-mono text-2xs transition-colors duration-200 hover:underline"
+                                style="color:var(--text-muted);">GitHub</a
+                            >
+                            <span style="color:var(--border-medium);">·</span>
+                            <a
+                                href={`https://${linkedin}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="font-mono text-2xs transition-colors duration-200 hover:underline"
+                                style="color:var(--text-muted);">LinkedIn</a
+                            >
+                            <span style="color:var(--border-medium);">·</span>
+                            <a
+                                href={`mailto:${email}`}
+                                class="font-mono text-2xs transition-colors duration-200 hover:underline"
+                                style="color:var(--text-muted);">Email</a
+                            >
+                        </div>
+                    </div>
+
+                    <!-- Right -->
+                    <div class="flex flex-col items-center gap-3 sm:items-end">
+                        <button
+                            onclick="window.print()"
+                            class="inline-flex items-center gap-2 rounded-full border px-4 py-2 font-mono text-2xs font-medium transition-all duration-300 hover:scale-105 active:scale-95"
+                            style="border-color:var(--border-medium); color:var(--text-secondary); background:var(--bg-secondary);"
+                        >
+                            <svg
+                                style="width:0.75rem;height:0.75rem;"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                stroke-width="2"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                                ></path>
+                            </svg>
+                            Export PDF
+                        </button>
+                        <span
+                            class="font-mono text-2xs"
+                            style="color:var(--text-muted);">Updated 2025</span
+                        >
+                    </div>
+                </div>
+
+                <!-- Decorative dots row -->
+                <div
+                    class="mt-8 flex items-center justify-center gap-2 opacity-30"
+                    aria-hidden="true"
+                >
+                    <span
+                        class="inline-block h-1 w-1 rounded-full"
+                        style="background:var(--accent);"></span>
+                    <span
+                        class="inline-block h-1 w-1 rounded-full"
+                        style="background:var(--text-muted);"></span>
+                    <span
+                        class="inline-block h-1 w-1 rounded-full"
+                        style="background:var(--accent);"></span>
+                    <span
+                        class="inline-block h-1 w-1 rounded-full"
+                        style="background:var(--text-muted);"></span>
+                    <span
+                        class="inline-block h-1 w-1 rounded-full"
+                        style="background:var(--accent);"></span>
+                </div>
+
+                <p
+                    class="mt-6 text-center font-mono text-2xs"
+                    style="color:var(--text-muted); opacity:0.6;"
+                >
+                    Designed & built with attention to detail
+                </p>
+            </div>
+        </footer>
+
+        <CommandBar client:only />
+
+        <script>
+            const els = document.querySelectorAll("[data-reveal]");
+            const obs = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((e) => {
+                        if (e.isIntersecting) {
+                            const el = e.target;
+                            el.style.animation = `fadeUp 0.55s cubic-bezier(0.16,1,0.3,1) ${el.style.animationDelay || "0ms"} forwards`;
+                            obs.unobserve(el);
+                        }
+                    });
+                },
+                { threshold: 0.05 },
+            );
+            els.forEach((el) => obs.observe(el));
+        </script>
+    </body>
+</html>
