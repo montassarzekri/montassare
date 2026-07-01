@@ -39,7 +39,7 @@ index_format = "elasticlunr_json"
 ## Theme Mode (`theme`)
 
 Sets the color theme for your blog.
-
+TEST
 - Type: String
 - Options:
   - "light": Always using the light theme
