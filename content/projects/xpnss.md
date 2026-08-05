@@ -6,10 +6,7 @@ date = 2026-08-05
 
 [extra]
 local_image = "xpnss.png"
-card_links = [
-  { url = "https://xpnss.com", text = "Website", icon = "globe" },
-  { url = "https://xpnss.com/download/xpnss.apk", text = "Download APK", icon = "download" },
-]
+demo = "https://xpnss.com"
 tags = ["flutter", "dart", "isar"]
 +++
 
