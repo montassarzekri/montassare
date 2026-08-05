@@ -8,7 +8,8 @@ date = 2026-08-05
 local_image = "xpnss.png"
 website = "https://xpnss.com"
 apk = "https://xpnss.com/download/xpnss.apk"
+gallery = ["xpnss.png", "xpnss.png", "xpnss.png"]
 tags = ["flutter", "dart", "isar"]
 +++
 
-Xpnss is a local-first behavioral finance app that stores everything in a local Isar database, with no accounts, no telemetry, and no cloud sync [xpnss](https://xpnss.com) — you own the data, full stop. No subscription, no ads, just a fast way to track spend without handing your financial life to a server you don't control.
+Xpnss is a local-first behavioral finance app — everything lives in an on-device Isar database, no accounts, no telemetry, no cloud sync. You own the data, full stop. No subscription, no ads, just a fast way to track spend without handing your financial life to a server you don't control.
